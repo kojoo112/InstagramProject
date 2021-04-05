@@ -1,0 +1,89 @@
+header {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+
+.appBarw {
+  background-color: #ffffff;
+  border-bottom: 1px solid #ebebeb;
+}
+.appBar {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  height: 54px;
+  margin: auto;
+  padding: 0 20px;
+  align-items: center;
+}
+
+.instagram-logo {
+  width: 360px;
+  height: 36px;
+}
+
+.logo {
+  position: absolute;
+  top: 16px;
+  width: 103px;
+}
+
+.appBarProfile {
+  height: 22px;
+  border-radius: 50%;
+}
+
+ul {
+  width: 198px;
+}
+
+.appBarMenuDiv {
+  width: 360px;
+}
+
+.appBarMenu {
+  float: right;
+  width: 222px;
+  height: 22px;
+  padding-left: 24px;
+  justify-content: space-between;
+  display: flex;
+}
+
+.menuIcon {
+  display: inline-block;
+  justify-content: space-between;
+}
+
+.fas.fa-home {
+  font-size: 22px;
+}
+
+i.far {
+  font-size: 22px;
+}
+
+.menu-profile {
+  width: 15px;
+}
+
+input[type="text"] {
+  font-family: "Font Awesome 5 Free";
+}
+
+.inputText > input::placeholder {
+  text-align: center;
+  font-weight: 510;
+}
+
+.search {
+  outline: none;
+  width: 199px;
+  height: 12px;
+  padding: 7px;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+  float: left;
+  background-color: #fafafa;
+}
