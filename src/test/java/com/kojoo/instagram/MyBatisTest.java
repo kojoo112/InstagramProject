@@ -15,10 +15,11 @@ public class MyBatisTest {
  
     @Inject
     private SqlSessionFactory sqlFactory;
-    
+    private SqlSession session;
     @Test
     public void testFactory() {
         System.out.println(sqlFactory);
+        System.out.println(session);
     }
     @Test
     public void testSession() {

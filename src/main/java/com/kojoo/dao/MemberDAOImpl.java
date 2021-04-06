@@ -10,17 +10,16 @@ import org.springframework.stereotype.Repository;
 import com.kojoo.vo.MemberVO;
 
 @Repository
-public class MemberDAOImpl implements MemberDAO {
- 
-    @Inject
-    private SqlSession sqlSession;
-    
-    private static final String Namespace = "com.kojoo.mappers.memberMapper";
-    
-    @Override
-    public List<MemberVO> selectMember() throws Exception {
- 
-        return sqlSession.selectList(Namespace+".selectMember");
-    }
- 
+public class MemberDAOImpl implements MemberDAO{
+
+	@Inject
+	private SqlSession session;
+	
+	private static String namespace = "com.kojoo.mapper.memberMapper";
+
+	@Override
+	public List<MemberVO> selectMember() {
+		
+		return session.selectList(namespace+".selectMember");
+	}
 }

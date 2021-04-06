@@ -6,6 +6,6 @@ import com.kojoo.vo.MemberVO;
 
 public interface MemberDAO {
 	
-	public List<MemberVO> selectMember() throws Exception;
+	public List<MemberVO> selectMember();
 
 }

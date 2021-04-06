@@ -17,11 +17,11 @@
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${memberList}" var="member">
+            <c:forEach items="${member}" var="members">
                 <tr>
-                    <td>${member.id}</td>
-                    <td>${member.pw}</td>
-                    <td>${member.name}</td>
+                    <td>${members.email}</td>
+                    <td>${members.password}</td>
+                    <td>${members.username}</td>
                 </tr>
             </c:forEach>
         </tbody>
