@@ -17,8 +17,22 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public List<MemberVO> selectMember() throws Exception {
-		// TODO Auto-generated method stub
+		
+		
 		return dao.selectMember();
+	}
+
+	@Override
+	public void register(MemberVO vo) {
+		
+		dao.register(vo);
+		
+	}
+
+	@Override
+	public MemberVO login(MemberVO vo) {
+		
+		return dao.login(vo);
 	}
 
 }

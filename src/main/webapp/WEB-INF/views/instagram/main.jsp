@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="com.kojoo.vo.MemberVO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
@@ -59,8 +60,8 @@
             <div class="myProfile">
                 <div><img src="/resources/img/cat.jpg" alt="" class="myProfile-photo"></div>
                 <div>
-                    <div class="myProfile-id">real_fast95</div>
-                    <div class="myProfile-name">고졍</div>
+                    <div class="myProfile-id">${member.email }</div>
+                    <div class="myProfile-name">${member.username }</div>
                 </div>
                 <div class="myProfile-idChange">전환</div>
             </div>
@@ -104,6 +105,13 @@
                         </div>
                         <div class="followButton">팔로우</div>
                     </div>
+                </div>
+                <div class="fileUpload">
+                    	<input type="file">
+                </div>
+                <div>
+                	<a href="logtout">로그아웃</a>
+                	${member.regDate }
                 </div>
             </div>
         </aside>

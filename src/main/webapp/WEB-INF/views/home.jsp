@@ -13,11 +13,11 @@
             <tr>
                 <th>아이디</th>
                 <th>비밀번호</th>
-                <th>이름</th>
+                <th>${email }</th>
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${member}" var="members">
+            <c:forEach items="${members}" var="member">
                 <tr>
                     <td>${members.email}</td>
                     <td>${members.password}</td>

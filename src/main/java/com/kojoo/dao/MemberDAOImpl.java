@@ -22,4 +22,15 @@ public class MemberDAOImpl implements MemberDAO{
 		
 		return session.selectList(namespace+".selectMember");
 	}
+
+	@Override
+	public void register(MemberVO vo) {
+		session.insert(namespace+".register", vo);
+	}
+
+	@Override
+	public MemberVO login(MemberVO vo) {
+		
+		return session.selectOne(namespace + ".login", vo);
+	}
 }
