@@ -14,6 +14,10 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Inject
 	private MemberDAO dao;
+	
+	/**
+	 *  method
+	 */
 
 	@Override
 	public List<MemberVO> selectMember() throws Exception {
@@ -33,6 +37,12 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO login(MemberVO vo) {
 		
 		return dao.login(vo);
+	}
+
+	@Override
+	public MemberVO read(MemberVO vo) {
+		
+		return dao.read(vo);
 	}
 
 }

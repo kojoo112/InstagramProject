@@ -5,12 +5,24 @@
 <mapper namespace="com.kojoo.mapper.memberMapper">
 	
 	<select id="login" resultType="com.kojoo.vo.MemberVO">
-		SELECT email, username, password, regdate FROM members WHERE (email = #{email} OR username = #{username}) AND password = #{password}
+		SELECT email, userName, password, regDate, imagePath FROM members WHERE (email = #{email} OR userName = #{userName}) AND password = #{password}
 	</select>
 	
 	<insert id="register">
-		INSERT INTO members(email, username, password) VALUES ( #{email}, #{username}, #{password})
+		INSERT INTO members(email, userName, password) VALUES ( #{email}, #{userName}, #{password})
 	</insert>
 	
+	<select id="read" parameterType="com.kojoo.vo.MemberVO" resultType="com.kojoo.vo.MemberVO">
+		SELECT email, userName, regDate, image, imagePath FROM members WHERE(email = #{email}, userName = #{userName})
+	</select>
 	
+	<insert id="saveImage" parameterType="java.util.Map">
+    	INSERT INTO image(image) VALUES(#{image})   
+	</insert>
+	
+	<select id="getByteImage" resultType="java.util.Map">
+    SELECT image FROM members
+	</select>
+
+
 </mapper>

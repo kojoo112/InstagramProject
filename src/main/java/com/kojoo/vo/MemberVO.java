@@ -3,21 +3,26 @@ package com.kojoo.vo;
 import java.sql.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
-import com.mysql.cj.jdbc.Blob;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 
 @Data
 public class MemberVO {
 	
+	private int memberNo;
 	private String email;
-	private String username;
+	private String userName;
 	private String password;
-	private Blob image;
+	
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date regDate;
+	
+	
+	private MultipartFile image;
+	private String imagePath;
+
 	
 
 }

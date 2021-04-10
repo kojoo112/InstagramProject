@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Instagram</title>
+<title>Insert title here</title>
 </head>
 <body>
- <jsp:include page="/WEB-INF/views/header.jsp"/>
+	<img alt="" src="/instagram/getByteImage" />
+
 </body>
 </html>

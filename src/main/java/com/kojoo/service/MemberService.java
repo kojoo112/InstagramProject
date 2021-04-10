@@ -11,4 +11,6 @@ public interface MemberService {
 	public void register(MemberVO vo);
 	
 	public MemberVO login(MemberVO vo);
+	
+	public MemberVO read(MemberVO vo);
 }

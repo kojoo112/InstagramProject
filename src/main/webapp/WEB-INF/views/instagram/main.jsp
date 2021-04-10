@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="com.kojoo.vo.MemberVO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
@@ -18,7 +17,7 @@
         <section class="section">
             <div class="content">
                 <div class="content-profile">
-                    <div><img src="/resources/img/goodCat.jpeg" alt="" class="content-profilePhoto"></div>
+                    <div><img src="${member.imagePath }" alt="" class="content-profilePhoto"></div>
                     <div class="content-more">
                         <div class="content-id">super_cat</div>
                         <div class="content-moreIcon"><i class="fas fa-ellipsis-h"></i></div>
@@ -58,10 +57,10 @@
         </section>
         <aside class="aside">
             <div class="myProfile">
-                <div><img src="/resources/img/cat.jpg" alt="" class="myProfile-photo"></div>
+                <div><img src="${member.imagePath }" alt="" class="myProfile-photo"></div>
                 <div>
                     <div class="myProfile-id">${member.email }</div>
-                    <div class="myProfile-name">${member.username }</div>
+                    <div class="myProfile-name">${member.userName }</div>
                 </div>
                 <div class="myProfile-idChange">전환</div>
             </div>
@@ -91,7 +90,7 @@
                             <div class="recommendedId">burnout_Cat</div>
                             <div class="recommendedFollower">bright_cat님이 팔로우 합니다.</div>
                         </div>
-                        <div class="followButton">팔로우</div>
+                    	<div class="followButton">팔로우</div>
                     </div>
                 </div>
                 <div class="recommend-element">
@@ -103,7 +102,7 @@
                             <div class="recommendedId">MuscleCat</div>
                             <div class="recommendedFollower">bright_cat님이 팔로우 합니다.</div>
                         </div>
-                        <div class="followButton">팔로우</div>
+                    	<div class="followButton">팔로우</div>
                     </div>
                 </div>
                 <div class="fileUpload">
@@ -116,5 +115,6 @@
             </div>
         </aside>
     </div>
+
 </body>
 </html>

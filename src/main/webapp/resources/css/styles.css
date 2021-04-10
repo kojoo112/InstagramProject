@@ -2,6 +2,8 @@
 @import "topNav.css";
 @import "content.css";
 @import "aside.css";
+@import "profile.css";
+
 html {
   min-width: 390px;
 }
