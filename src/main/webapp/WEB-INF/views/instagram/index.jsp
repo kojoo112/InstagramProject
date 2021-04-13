@@ -113,7 +113,7 @@ a{
 					<div class="description">친구들의 사진과 동영상을 보려면 가입하세요.</div>
 				</div>
 				<div class="loginForm-form">
-					<form action="/instagram/login" method="post" name="login".>
+					<form action="/instagram/login" method="post" name="login">
 						<table id="loginForm-table">
 						<tr><td><input type="text" name="email" placeholder="이메일 또는 사용자 이름">
 						<tr><td><input type="password" name="password" placeholder="비밀번호">

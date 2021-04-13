@@ -37,6 +37,16 @@
 	<context:component-scan base-package="com.kojoo.dao" />
 	<context:component-scan base-package="com.kojoo.vo" />
 	
-	
+	<interceptors> 
+		<interceptor> 
+			<mapping path="/instagram/*" />
+			<exclude-mapping path="/instagram/login"/>  
+			<exclude-mapping path="/instagram/index"/>
+			<exclude-mapping path="/instagram/signUp"/>
+			<beans:bean class="com.kojoo.Interceptor.SessionInterceptor"></beans:bean> 
+		</interceptor> 
+	</interceptors>
+
+
 	
 </beans:beans>

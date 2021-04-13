@@ -40,17 +40,18 @@ public class MainController {
 	private MemberService service;
 	
 	
+	
 	@GetMapping("/index")
 	public String index() {
 		
 		return "/instagram/index";
 	}
 	
-	@RequestMapping(value="/signUp", method = RequestMethod.GET)
+	@GetMapping("/signUp")
 	public void getSignUp() {	
 	}
 	
-	@RequestMapping(value="/signUp", method = RequestMethod.POST)
+	@PostMapping("/signUp")
 	public String postSignUp(MemberVO vo) {
 		
 		service.register(vo);
@@ -68,6 +69,7 @@ public class MainController {
 	@PostMapping("/login")
 	public String postLogin(MemberVO vo, HttpServletRequest req) throws Exception{
 		HttpSession session = req.getSession();
+		
 		MemberVO login = service.login(vo);
 		
 		if(login == null) {
@@ -78,16 +80,22 @@ public class MainController {
 		} else {
 			session.setAttribute("member", login);
 			String uploadPath = "/resources/img/";
-			login.setImagePath(uploadPath + login.getImagePath());
+			login.setImageName(uploadPath + login.getImageName());
 		}
 		
 		log.info("login............" + login);
+		log.info(vo.getEmail());
+		log.info(vo.getPassword());
+		log.info(login.getImageName());
 		
-		return "/instagram/main";
+		return "redirect:/instagram/main";
 	}
 	
-	public void main(MemberVO vo) {
-		service.read(vo);
+	@GetMapping("/main")
+	public void main(MemberVO vo, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		
+		vo = (MemberVO) session.getAttribute("member");
 	}
 	
 	
@@ -98,14 +106,19 @@ public class MainController {
 		return "redirect:/instagram/index";
 	}
 	
-	@GetMapping("/profile")
-	public String myProfile(MemberVO vo) {
+	@GetMapping("/myProfile")
+	public void myProfile(HttpSession session,MemberVO vo, HttpServletRequest req) {
+		session = req.getSession();
 		
-		return "/instagram/myProfile";
+		vo = (MemberVO) session.getAttribute("member");
+		
+		log.info(vo.getEmail());
+		log.info(vo.getImageName());
 	}
 	
 	
-	@RequestMapping(value="/uploadFile")
+	
+	@GetMapping("/uploadFile")
 	public String formFile() {
 	    return "/instagram/uploadFile";
 	}
@@ -115,7 +128,7 @@ public class MainController {
 	 * @param vo
 	 * @return
 	 */
-	@PostMapping(value="/saveImage")
+	@PostMapping("/saveImage")
 	public void saveImage(MultipartFile[] uploadFile, Model model) {
 		
 		String uploadFolder = "/Users/kojoo112/Desktop/temp/";
@@ -163,20 +176,8 @@ public class MainController {
 			   }
 		   }
 		
-		return "redirect:/instagram/profile";
+		return "redirect:/instagram/myProfile";
 	}
 
-	
-	@RequestMapping(value="/view")
-	public String view(MemberVO vo) {
-		
-		String uploadPath = "/Users/kojoo/Desktop/temp/";
-		String imagePath = uploadPath + vo.getImagePath();
-		
-		
-		
-				
-	    return "/instagram/view";
-	}
 	     
 }

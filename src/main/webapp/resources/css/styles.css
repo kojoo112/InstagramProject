@@ -3,6 +3,7 @@
 @import "content.css";
 @import "aside.css";
 @import "profile.css";
+@import "main-radio.css";
 
 html {
   min-width: 390px;

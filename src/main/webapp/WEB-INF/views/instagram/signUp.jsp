@@ -104,10 +104,10 @@ a {
 				<div class="description">친구들의 사진과 동영상을 보려면 가입하세요.</div>
 			</div>
 			<div class="signUpForm-form">
-				<form action="/instagram/signUp" method="post" name="signUpForm".>
+				<form action="/instagram/signUp" method="post" name="signUpForm">
 					<table id="signUpForm-table">
 					<tr><td><input type="text" name="email" placeholder="이메일">
-					<tr><td><input type="text" name="username" placeholder="사용자 이름">
+					<tr><td><input type="text" name="userName" placeholder="사용자 이름">
 					<tr><td><input type="password" name="password" placeholder="비밀번호">
 					<tr><td><input type="submit" value="로그인">
 					<tr><td>

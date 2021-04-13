@@ -19,14 +19,14 @@
         <div class="profileWrapper">
                 <div class="profileWrapper-left">
                     <div class="profileWrapper-profileImage">
-                    <img src="/resources/img/cat.jpg" alt="empty photo" id="profilePhoto"/>
+                    <img src="${member.imageName }" alt="empty photo" id="profilePhoto"/>
                     </div>
                 </div>
                 <div class="profileWrapper-right">
                     <div class="profileWrapper-info">
                         <div class="profileWrapper-info-myInfo">
                             <div class="profileWrapper-info-myInfo-username">
-                            ${member.userName}ddd
+                            ${member.userName}
                             </div>
                             <div class="profileWrapper-info-myInfo-profileEdit">
                                 <input class="profileEditBtn"type="button" value="프로필 편집" />
@@ -51,21 +51,29 @@
                 </div>
             
         </div>
+	
 
-        <div class="info-tab">
-            <div class="postsTab">게시물</div>
-            <div class="postsIGTV">tv</div>
-            <div class="postsSaved">saved</div>
-            <div class="postsTaged">taged</div>
-        </div>
-        <div class="changedScreen">
-            <div class="posting">
-            	<form action="/instagram/postingForm" method="post" enctype="multipart/form-data">
-            		<input type="file" name="uploadFile">
-            		<input type="submit" value="게시">
-            	</form>
-            </div>
-        </div>
+    <div class="main">
+		<input type="radio" id="tab-1" name="show" checked/>
+		<input type="radio" id="tab-2" name="show" />
+		<input type="radio" id="tab-3" name="show" />
+		<div class="tab">
+	    	<label for="tab-1">게시물</label>
+	    	<label for="tab-2">저장됨</label>
+	    	<label for="tab-3">글쓰기</label>
+		</div>
+		<div class="contents">
+			<div class="content-dis">
+			      게시물
+		    </div>
+		    <div class="content-dis">
+			      saved
+			</div>
+			<div class="content-dis">
+			      jhgjg
+			</div>
+		</div>
+    </div>
     </div>
   </body>
 </html>

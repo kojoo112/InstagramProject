@@ -17,7 +17,7 @@
         <section class="section">
             <div class="content">
                 <div class="content-profile">
-                    <div><img src="${member.imagePath }" alt="" class="content-profilePhoto"></div>
+                    <div><img src="${member.imageName }" alt="" class="content-profilePhoto"></div>
                     <div class="content-more">
                         <div class="content-id">super_cat</div>
                         <div class="content-moreIcon"><i class="fas fa-ellipsis-h"></i></div>
@@ -57,7 +57,7 @@
         </section>
         <aside class="aside">
             <div class="myProfile">
-                <div><img src="${member.imagePath }" alt="" class="myProfile-photo"></div>
+                <div><img src="${member.imageName }" alt="" class="myProfile-photo"></div>
                 <div>
                     <div class="myProfile-id">${member.email }</div>
                     <div class="myProfile-name">${member.userName }</div>
@@ -105,11 +105,8 @@
                     	<div class="followButton">팔로우</div>
                     </div>
                 </div>
-                <div class="fileUpload">
-                    	<input type="file">
-                </div>
                 <div>
-                	<a href="logtout">로그아웃</a>
+                	<a href="/instagram/logout">로그아웃</a>
                 	${member.regDate }
                 </div>
             </div>

@@ -9,16 +9,11 @@ import lombok.Data;
 @Data
 public class PostVO {
 	
-	private int id;				// pk
-	private String comment;		// fk
-	private int heart;
+	private int pno;
+	private String imageName;
+	private String comment;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
 	private Date regDate;
 	
-	private String fileName;
-	private int fileSize;
-	private String fileType;
-	
-
 }
