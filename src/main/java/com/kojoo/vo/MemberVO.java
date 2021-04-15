@@ -1,6 +1,6 @@
 package com.kojoo.vo;
 
-import java.sql.Date;
+import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -9,13 +9,13 @@ import lombok.Data;
 @Data
 public class MemberVO {
 	
-	private int mno;
+	private int memberNo;
 	private String email;
 	private String userName;
 	private String password;
 	
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date regDate;
 	
 	private String imageName;

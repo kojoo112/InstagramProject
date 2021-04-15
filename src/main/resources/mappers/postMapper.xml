@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kojoo.mapper.postMapper">
+
+	<insert id="register">
+		INSERT INTO post (image_name, comment, member_id) VALUES (#{imageName}, #{comment}, #{memberNo}) 
+	</insert>
+	
+	<select id="myPosting">
+		SELECT * FROM post WHERE member_id = #{memberNo}
+	</select>
+	
+	
+</mapper>

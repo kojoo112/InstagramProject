@@ -115,7 +115,7 @@ a{
 				<div class="loginForm-form">
 					<form action="/instagram/login" method="post" name="login">
 						<table id="loginForm-table">
-						<tr><td><input type="text" name="email" placeholder="이메일 또는 사용자 이름">
+						<tr><td><input type="text" name="userName" placeholder="사용자 이름">
 						<tr><td><input type="password" name="password" placeholder="비밀번호">
 						<tr><td><input type="submit" value="로그인">
 						<tr><td>

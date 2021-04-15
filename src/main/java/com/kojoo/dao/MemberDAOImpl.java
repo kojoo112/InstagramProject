@@ -1,7 +1,6 @@
 package com.kojoo.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -40,14 +39,6 @@ public class MemberDAOImpl implements MemberDAO{
 		return session.selectOne(namespace + ".login", vo);
 	}
 
-	@Override
-	public void saveImage(Map<String, Object> hmap) {
-	    session.insert(namespace + ".saveImage",hmap);
-	}
-	
-	public Map<String, Object> getByteImage() {
-	    return session.selectOne(namespace + ".getByteImage");
-	}
 
 	@Override
 	public MemberVO read(MemberVO vo) {
