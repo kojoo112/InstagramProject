@@ -31,9 +31,7 @@ WHERE
 		SELECT email, user_name AS userName, reg_date AS regDate, image_name AS imageName FROM members WHERE(email = #{email}, userName = #{userName})
 	</select>
 	
-	<insert id="saveImage" parameterType="java.util.Map">
-    	INSERT INTO members(image_name AS imageName) VALUES(#{imageName})   
-	</insert>
+
 	
 
 

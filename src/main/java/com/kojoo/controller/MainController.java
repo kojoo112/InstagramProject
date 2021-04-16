@@ -1,20 +1,21 @@
 package com.kojoo.controller;
 
-import java.io.File;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.kojoo.service.MemberService;
+import com.kojoo.service.PostService;
 import com.kojoo.vo.MemberVO;
+import com.kojoo.vo.PostVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -24,7 +25,10 @@ import lombok.extern.log4j.Log4j;
 public class MainController {
 
 	@Inject
-	private MemberService service;
+	private MemberService memberService;
+	
+	@Inject
+	private PostService postService;
 	
 	
 	
@@ -37,25 +41,19 @@ public class MainController {
 	}
 	
 	@PostMapping("/signUp")
-	public String postSignUp(MemberVO vo) {
+	public String postSignUp(MemberVO memberVo) {
 		
-		service.register(vo);
+		memberService.register(memberVo);
 		
 		return "redirect:/instagram/index";
-	}
-	
-	
-	@GetMapping("/home")
-	public String home() throws Exception {
-		
-		return "/home";
 	}
 	
 	@PostMapping("/login")
 	public String postLogin(MemberVO vo, HttpServletRequest req) throws Exception{
 		HttpSession session = req.getSession();
+		MemberVO login = memberService.login(vo);
 		
-		MemberVO login = service.login(vo);
+		log.info("asdfasdfasdfasdfdsffsfssfd"+session.getAttribute("vo"));
 		
 		if(login == null) {
 			log.info("login Failed..........");
@@ -90,52 +88,22 @@ public class MainController {
 	}
 	
 	@GetMapping("/{member.userName}")
-	public String myProfile( MemberVO vo, HttpServletRequest req) {
+	public String myProfile(MemberVO memberVo, HttpServletRequest req) {
 		HttpSession session = req.getSession();
+		log.info("getRequestURL : " + req.getRequestURL());
 		
-		vo = (MemberVO) session.getAttribute("member");
+		memberVo = (MemberVO) session.getAttribute("member");
+		List<PostVO> list = postService.myPosting(memberVo);
+		req.setAttribute("lists", list);
+		
+		log.info("getURI" + req.getRequestURI());
 		
 		return "/instagram/myProfile";
 	}
-	
-	
 	
 	@GetMapping("/uploadFile")
 	public String formFile() {
 	    return "/instagram/uploadFile";
 	}
-	 
-	/**
-	 * 파일처리 컨트롤러
-	 * @param vo
-	 * @return
-	 */
-	@PostMapping("/saveImage")
-	public void saveImage(MultipartFile[] uploadFile, Model model) {
-		
-		String uploadFolder = "/Users/kojoo112/Desktop/temp/";
-		
-		
-	   for(MultipartFile multipartFile : uploadFile) {
-		   log.info("upload File Name: " + multipartFile.getOriginalFilename());
-		   log.info(multipartFile.getSize());
-		   
-		   File saveFile = new File(uploadFolder, multipartFile.getOriginalFilename());
-		   
-		   String uploadImagePath = uploadFolder + multipartFile.getOriginalFilename();
-		   
-		   try {
-			   multipartFile.transferTo(saveFile);
-			   log.info(uploadImagePath);
-		   } catch(Exception e){
-			   log.error(e.getMessage());
-		   }
-	   }
-	   
-	}
-	
-	
-	
-
-	     
+		     
 }

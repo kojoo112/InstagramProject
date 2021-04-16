@@ -27,20 +27,16 @@ public class PostController {
 	
 	@PostMapping("/posting")
 	
-	public String posting(MultipartFile[] imageName, HttpServletRequest req,
-			String comment) {
+	public String posting(HttpServletRequest req, PostVO pvo) {
 		
 		HttpSession session = req.getSession();
 		log.info("session : " +  session);
-		
-		MemberVO vo = (MemberVO) session.getAttribute("member");
-		log.info(vo.getMemberNo() + "MemberNo....................");
 				
-		String uploadFolder = "/Users/kojoo112/Desktop/temp/";
+		String uploadFolder = "/Users/kojoo112/eclipse-workspace/InstagramProject/src/main/webapp/resources/images/";
 		
 		log.info("posting................");
 		
-		   for(MultipartFile multipartFile : imageName) {
+		   for(MultipartFile multipartFile : pvo.getImageFile()) {
 			   log.info("upload File Name: " + multipartFile.getOriginalFilename());
 			   log.info(multipartFile.getSize());
 			   
@@ -48,14 +44,7 @@ public class PostController {
 			  
 			   try {
 				   multipartFile.transferTo(saveFile);
-				   
-				   log.info("saveFile : " + saveFile);
-				   log.info("getPath : " + saveFile.getPath());
-				   log.info("getName : " + saveFile.getName());
-				   
-				   PostVO pvo = new PostVO(saveFile, comment, vo.getMemberNo());
-				   
-				   log.info(pvo);
+				   pvo.setImageName(saveFile.getName());
 				   service.register(pvo);
 				   
 			   } catch(Exception e){

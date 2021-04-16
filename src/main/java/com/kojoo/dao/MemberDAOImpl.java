@@ -1,7 +1,5 @@
 package com.kojoo.dao;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -20,13 +18,6 @@ public class MemberDAOImpl implements MemberDAO{
 	/**
 	 *  method
 	 */
-	
-
-	@Override
-	public List<MemberVO> selectMember() {
-		
-		return session.selectList(namespace+".selectMember");
-	}
 
 	@Override
 	public void register(MemberVO vo) {

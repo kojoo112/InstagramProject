@@ -5,12 +5,20 @@
 <mapper namespace="com.kojoo.mapper.postMapper">
 
 	<insert id="register">
-		INSERT INTO post (image_name, comment, member_id) VALUES (#{imageName}, #{comment}, #{memberNo}) 
+		INSERT INTO post (image_name, comment, member_id) 
+		VALUES (#{imageName}, #{comment}, #{memberNo}) 
 	</insert>
 	
-	<select id="myPosting">
-		SELECT * FROM post WHERE member_id = #{memberNo}
+	<select id="myPosting" parameterType="com.kojoo.vo.MemberVO" resultType="com.kojoo.vo.PostVO">
+		SELECT 
+		member_id AS memberNo,
+		image_name AS imageName, 
+		comment, 
+		reg_date AS regDate 
+		FROM post where member_id = #{memberNo}
 	</select>
+	
+	
 	
 	
 </mapper>

@@ -6,8 +6,6 @@ import com.kojoo.vo.MemberVO;
 
 public interface MemberService {
 	
-	public List<MemberVO> selectMember() throws Exception;
-	
 	public void register(MemberVO vo);
 	
 	

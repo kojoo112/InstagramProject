@@ -15,7 +15,7 @@
 #tab-1:checked ~ .contents div:nth-child(1),
 #tab-2:checked ~ .contents div:nth-child(2),
 #tab-3:checked ~ .contents div:nth-child(3) {
-	display: flex;
+	display: block;
 }
 .main {
   margin: 0 auto;
