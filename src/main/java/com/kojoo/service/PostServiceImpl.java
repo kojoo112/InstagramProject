@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.kojoo.dao.PostDAO;
+import com.kojoo.vo.LikeVO;
 import com.kojoo.vo.MemberVO;
 import com.kojoo.vo.PostVO;
 
@@ -17,14 +18,23 @@ public class PostServiceImpl implements PostService {
 	private PostDAO dao;
 	
 	@Override
-	public void register(PostVO pvo) {
-		dao.register(pvo);
+	public void register(PostVO postVo) {
+		dao.register(postVo);
 	}
 
 	@Override
-	public List<PostVO> myPosting(MemberVO mvo) {
-		
-		return dao.myPosting(mvo);
+	public List<PostVO> myPosting(MemberVO memberVo) {
+		return dao.myPosting(memberVo);
+	}
+
+	@Override
+	public List<PostVO> feedReading(MemberVO memberVo) {
+		return dao.feedReading(memberVo);
+	}
+	
+	@Override
+	public List<LikeVO> likeSelect(PostVO postVo){
+		return dao.likeSelect(postVo);
 	}
 
 }

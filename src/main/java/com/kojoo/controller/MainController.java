@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -53,8 +53,6 @@ public class MainController {
 		HttpSession session = req.getSession();
 		MemberVO login = memberService.login(vo);
 		
-		log.info("asdfasdfasdfasdfdsffsfssfd"+session.getAttribute("vo"));
-		
 		if(login == null) {
 			log.info("login Failed..........");
 			
@@ -72,11 +70,19 @@ public class MainController {
 	}
 	
 	@GetMapping("/main")
-	public void main(MemberVO vo, HttpServletRequest req) {
+	public String main(MemberVO memberVo, HttpServletRequest req, Model model) {
 		HttpSession session = req.getSession();
 		
-		vo = (MemberVO) session.getAttribute("member");
-		log.info(vo.getMemberNo());
+		memberVo = (MemberVO) session.getAttribute("member");
+		log.info(memberVo.getMemberNo());
+		log.info("main.................");
+		log.info(memberVo);
+		
+		List<PostVO> postList = postService.feedReading(memberVo);
+		model.addAttribute("postList", postList);
+//		List<LikeVO> likeList = postService.likeSelect(6);
+		
+		return "/instagram/main";
 	}
 	
 	
@@ -96,6 +102,7 @@ public class MainController {
 		List<PostVO> list = postService.myPosting(memberVo);
 		req.setAttribute("lists", list);
 		
+		log.info(memberVo.getMemberNo()+ "memberNo.............");
 		log.info("getURI" + req.getRequestURI());
 		
 		return "/instagram/myProfile";

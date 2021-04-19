@@ -5,20 +5,77 @@
 <mapper namespace="com.kojoo.mapper.postMapper">
 
 	<insert id="register">
-		INSERT INTO post (image_name, comment, member_id) 
-		VALUES (#{imageName}, #{comment}, #{memberNo}) 
+		INSERT INTO post 
+		(
+			image_name, 
+			comment, 
+			member_id
+		) 
+		VALUES 
+		(
+			#{postImageName}, 
+			#{comment}, 
+			#{memberNo}
+		) 
 	</insert>
 	
 	<select id="myPosting" parameterType="com.kojoo.vo.MemberVO" resultType="com.kojoo.vo.PostVO">
 		SELECT 
-		member_id AS memberNo,
-		image_name AS imageName, 
+		member_id AS memberNo, 
+		image_name AS postImageName, 
 		comment, 
 		reg_date AS regDate 
 		FROM post where member_id = #{memberNo}
 	</select>
 	
+	<select id="feedReading" parameterType="com.kojoo.vo.MemberVO" resultType="com.kojoo.vo.PostVO">
+		SELECT 
+			mem.member_id AS memberNo,
+		    mem.user_name AS userName,
+		    mem.image_name AS profileImageName,
+			po.image_name AS postImageName,
+		    po.comment AS comment,
+		    po.reg_date AS regDate,
+		    po.index AS postNo,
+            (
+            SELECT 
+				COUNT(li.post_index)
+            FROM `like` li 
+            WHERE li.post_index = po.index
+            ) AS `likeCount`
+            
+		FROM post po 
+		LEFT JOIN members mem ON po.member_id = mem.member_id
+		WHERE po.member_id IN (
+			SELECT target_member_id
+		    FROM follow fo
+		    WHERE fo.member_id = #{memberNo}
+		) 
+		ORDER BY 
+		regDate 
+		DESC;
+	</select>
+		
+	<insert id="likeInsert">
+		INSERT INTO heart
+		(
+			post_index, 
+			member_index
+		) 
+		VALUES
+		(
+			#{index},
+			#{memberNo}
+		)
+	</insert>
 	
-	
-	
+	<select id="likeSelect" parameterType="com.kojoo.vo.PostVO" resultType="com.kojoo.vo.LikeVO">
+		SELECT 
+			li.post_index AS postIndex,
+			li.member_index AS memberIndex
+		FROM `like` li
+		LEFT JOIN post po 
+		ON po.index = li.post_index
+	</select>
+		
 </mapper>

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.kojoo.vo.LikeVO;
 import com.kojoo.vo.MemberVO;
 import com.kojoo.vo.PostVO;
 
@@ -19,15 +20,27 @@ public class PostDAOImpl implements PostDAO{
 	private static String namespace = "com.kojoo.mapper.postMapper";
 	
 	@Override
-	public void register(PostVO pvo) {
-		session.insert(namespace + ".register", pvo);
+	public void register(PostVO postVo) {
+		session.insert(namespace + ".register", postVo);
 		
 	}
 
 	@Override
-	public List<PostVO> myPosting(MemberVO mvo) {
+	public List<PostVO> myPosting(MemberVO memberVo) {
 		
-		return session.selectList(namespace + ".myPosting", mvo);
+		return session.selectList(namespace + ".myPosting", memberVo);
+	}
+
+	@Override
+	public List<PostVO> feedReading(MemberVO memberVo) {
+		
+		return session.selectList(namespace + ".feedReading", memberVo);
+	}
+
+	@Override
+	public List<LikeVO> likeSelect(PostVO postVo) {
+		
+		return session.selectList(namespace + ".likeSelect", postVo);
 	}
 
 }

@@ -6,29 +6,46 @@
 	
 	<select id="login" resultType="com.kojoo.vo.MemberVO">
 		SELECT 
-  member_id AS memberNo, 
-  email, 
-  user_name AS userName, 
-  password, 
-  date_format(reg_date, '%Y-%m-%d %H:%m:%s') AS regDate, 
-  image_name AS imageName 
-FROM 
-  members 
-WHERE 
-  (
-    email = #{email} OR user_name = #{userName}
-  ) AND password = #{password}
+		  member_id AS memberNo, 
+		  email, 
+		  user_name AS userName, 
+		  password, 
+		  date_format(reg_date, '%Y-%m-%d %H:%m:%s') AS regDate, 
+		  image_name AS imageName 
+		FROM 
+		  members 
+		WHERE 
+		  (
+		    email = #{email} OR user_name = #{userName}
+		  ) AND password = #{password}
 
 	</select>
 	
 	<insert id="register">
-		INSERT INTO members(email, user_name, password) VALUES ( #{email}, #{userName}, #{password})
+		INSERT INTO members
+		(
+			email, 
+			user_name, 
+			password
+		) 
+		VALUES 
+		( 
+			#{email}, 
+			#{userName}, 
+			#{password}
+		)
 	</insert>
 	
 	
 	
 	<select id="read" parameterType="com.kojoo.vo.MemberVO" resultType="com.kojoo.vo.MemberVO">
-		SELECT email, user_name AS userName, reg_date AS regDate, image_name AS imageName FROM members WHERE(email = #{email}, userName = #{userName})
+		SELECT 
+		email, 
+		user_name AS userName, 
+		reg_date AS regDate, 
+		image_name AS imageName 
+		FROM members 
+		WHERE(email = #{email}, userName = #{userName})
 	</select>
 	
 

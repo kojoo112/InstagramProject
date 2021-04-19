@@ -116,6 +116,7 @@ a {
 	display: block;
 }
 .modal{ 
+	max-width:none;
   position:absolute; 
   width:100%; 
   height:100%; 
@@ -126,8 +127,8 @@ a {
 }
 
 .modal_content{
-  width:400px; 
-  height:200px;
+  width:80%; 
+  height: auto;
   background:#fff; 
   border-radius:10px;
   position:relative; 
@@ -156,7 +157,7 @@ a {
 	display: none;
 	z-index: 500;
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -179,13 +180,14 @@ a {
 	left: 50%;
 	transform: translate(-50%, -20%);
 	background-color: #ffffff;
-	width: 30%;
-	height: 30%;
+	width: 80%;
+	height: auto;
 	text-align: center;
 }
 
 .modalBox img {
-	width: 100%;
+	max-width:480px;
+	max-height: 600px;
 }
 
 .modalBox p {
@@ -250,7 +252,7 @@ a {
 					
 					 <c:forEach var="list" items="${lists}" >
 					
-						<img alt="${list.imageName }" class="posts-image" src="/resources/images/${list.imageName}">
+						<img alt="${list.postImageName}" class="posts-image" src="/resources/images/${list.postImageName}">
 						
 						
 					</c:forEach>
@@ -259,11 +261,6 @@ a {
 				      			<img id="emptyImage" src="/resources/img/emptyImage.jpeg">
 				      		</c:when>
 				      	</c:choose> --%>
-				    </div>
-				    <div class="posts">
-				    	<img alt="" src="/resources/images/logo.png">
-				    	<img alt="" src="/resources/images/logo.png">
-				    	<img alt="" src="/resources/images/logo.png">
 				    </div>
 			    </div>
 			    <div class="content-dis">
@@ -295,8 +292,21 @@ a {
     <div class="modal">
 		<button>&times;</button>
 		<div class="modalBox">
-			<img src="" alt="">
-			<p></p>
+			<div class="modal-img">
+				<img src="" alt="">
+			</div>
+			<%-- <div class="modal-content">
+				<div class="modal-header">
+					<div class="modal-header-proflieImg">
+						<img alt="" src="/resources/images/${member.imageName }">
+					</div>
+					<div class="modal-header-profileInfo">
+						<div class="modal-header-profileInfo-userName">${member.userName}</div>
+						<div class="modal-header-profileInfo-email">${member.email }</div>
+					</div>
+				</div>
+				<div class="modal"></div>
+			</div> --%>
 		</div>
 	</div>
 
@@ -304,13 +314,21 @@ a {
 
 $(function(){
 // 	이미지 클릭시 해당 이미지 모달
-	$(".posts").click(function(){
-		$(".modal").show();
+	$(".posts-image").click(function(){
+		
 		// 해당 이미지 가겨오기
-		var imgSrc = $(this).children("img").attr("src");
+		var imgSrc = $(this).attr("src");
+		console.log(imgSrc);
+		// for (let index = 0; index < imgSrc.length; index++) {
+		// 	console.log(imgSrc[index]); 
+		// }
 		var imgAlt = $(this).children("img").attr("alt");
+		console.log(imgSrc);
+		console.log(imgAlt);
 		$(".modalBox img").attr("src", imgSrc);
 		$(".modalBox img").attr("alt", imgAlt);
+
+		$(".modal").show();
 		
 		// 해당 이미지 텍스트 가져오기
 		// var imgTit =  $(this).children("p").text();

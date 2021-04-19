@@ -13,12 +13,12 @@ public class MemberVO {
 	private String email;
 	private String userName;
 	private String password;
+	private String imageName;
 	
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date regDate;
 	
-	private String imageName;
 
 	
 

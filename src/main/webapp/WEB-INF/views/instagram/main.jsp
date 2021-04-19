@@ -10,28 +10,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
     <link rel="stylesheet" href="/resources/css/styles.css" location="/css/"/>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <link rel="shortcut icon" type="imgage/x-icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/200px-Instagram_logo_2016.svg.png">
+    <style type="text/css">
+    .fa-heart:before{
+    	cursor: pointer;
+    }
+    </style>
     <title>Instagram</title>
 </head>
 <body>
    <jsp:include page="/WEB-INF/views/header.jsp"/>
     <div class="view">
         <section class="section">
+        <c:forEach var="post" items="${postList }">
             <div class="content">
                 <div class="content-profile">
-                    <div><img src="${member.imageName }" alt="" class="content-profilePhoto"></div>
+                    <div><img src="/resources/img/${post.profileImageName}" alt="" class="content-profilePhoto"></div>
                     <div class="content-more">
-                        <div class="content-id">super_cat</div>
+                        <div class="content-id">${post.userName}</div>
                         <div class="content-moreIcon"><i class="fas fa-ellipsis-h"></i></div>
                     </div>
                 </div>
                 <div class="content-contents">
-                    <img src="/resources/img/brightCat.jpg" class="content-contents" alt="">
+                    <img src="/resources/images/${post.postImageName}" class="content-contents" alt="">
                 </div>
                 <div class="content_bottom">
                     <div class="content-menuDiv">
                         <ul class="content-menuLeft">
-                            <li class="content-menuIcon"><i class="far fa-heart"></i></li>
+                            <li class="content-menuIcon"><i id="postHeart" class="far fa-heart"></i></li>
                             <li class="content-menuIcon"><i class="far fa-comment"></i></li>
                             <li class="content-menuIcon"><i class="far fa-paper-plane"></i></li>
                         </ul>
@@ -39,10 +46,10 @@
                             <li class="content-menuIcon"><i class="far fa-bookmark"></i></li>
                         </ul>
                     </div>
-                    <div class="views">조회 2,331,635회</div>
+                    <div class="views">좋아요 ${post.likeCount }개</div>
                     <div class="content-contents-contents">
-                        <div class="contents-id">super_cat</div>
-                        <div class="contents-contents">it's my friend !!</div>
+                        <div class="contents-id">${post.userName }</div>
+                        <div class="contents-contents">${post.comment}</div>
                         <div class="contents-contents-hashtag">#bright_cat112</div>
                         <div class="comment">
                             <div class="comment-id">bright_cat112</div>
@@ -56,6 +63,7 @@
                     </div>
                 </div>
             </div>
+        </c:forEach>
         </section>
         <aside class="aside">
             <div class="myProfile">
@@ -116,4 +124,24 @@
     </div>
 
 </body>
+<script>
+$(document).ready(function(){
+	
+	var isClicked = false;
+	
+	$("#postHeart").on("click", function(){
+		if(isClicked == false){
+			$(this).css("color", "red");
+			isClicked = true;
+			console.log(isClicked.toString());
+		} else {
+			$(this).css("color", "black");
+			isClicked = false;	
+		}
+	});
+	
+	
+});	
+
+</script>
 </html>

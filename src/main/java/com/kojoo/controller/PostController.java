@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kojoo.service.PostService;
-import com.kojoo.vo.MemberVO;
 import com.kojoo.vo.PostVO;
 
 import lombok.extern.log4j.Log4j;
@@ -23,11 +22,10 @@ import lombok.extern.log4j.Log4j;
 public class PostController {
 	
 	@Inject
-	PostService service;
+	PostService postService;
 	
 	@PostMapping("/posting")
-	
-	public String posting(HttpServletRequest req, PostVO pvo) {
+	public String posting(HttpServletRequest req, PostVO postVo) {
 		
 		HttpSession session = req.getSession();
 		log.info("session : " +  session);
@@ -36,7 +34,7 @@ public class PostController {
 		
 		log.info("posting................");
 		
-		   for(MultipartFile multipartFile : pvo.getImageFile()) {
+		   for(MultipartFile multipartFile : postVo.getImageFile()) {
 			   log.info("upload File Name: " + multipartFile.getOriginalFilename());
 			   log.info(multipartFile.getSize());
 			   
@@ -44,8 +42,8 @@ public class PostController {
 			  
 			   try {
 				   multipartFile.transferTo(saveFile);
-				   pvo.setImageName(saveFile.getName());
-				   service.register(pvo);
+				   postVo.setPostImageName(saveFile.getName());
+				   postService.register(postVo);
 				   
 			   } catch(Exception e){
 				   log.error(e.getMessage());
