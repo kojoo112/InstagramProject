@@ -278,7 +278,7 @@ a {
 									<tr><td><input type="file" name="imageFile" multiple/>										
 									<tr><td><textarea rows="5" cols="33" name="comment" placeholder="사진에 대해 설명해주세요."></textarea>
 									<tr><td><input type="hidden" name="memberNo" value="${member.memberNo }"/>
-									<tr><td><button type="submit">작성</button>
+									<tr><td><button id="uploadBtn" type="submit">작성</button>
 								</table> 
 							</form>
 						</div>

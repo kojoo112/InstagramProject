@@ -16,6 +16,12 @@
     .fa-heart:before{
     	cursor: pointer;
     }
+    
+    button{
+    	border: 0;
+    	padding: 0;
+    	background-color: #ffffff;
+    }
     </style>
     <title>Instagram</title>
 </head>
@@ -38,7 +44,12 @@
                 <div class="content_bottom">
                     <div class="content-menuDiv">
                         <ul class="content-menuLeft">
-                            <li class="content-menuIcon"><i id="postHeart" class="far fa-heart"></i></li>
+                            <li class="content-menuIcon"><button class="postLikeButton" onClick="likeClick(${post.postNo})"><i id="postHeart${post.postNo }" class="far fa-heart"></i></button></li>
+                            <c:if test="${post.likeYn eq 'y' }">
+				        		<script type="text/javascript">
+				        			$("#postHeart${post.postNo}").css("color", "red");
+				        		</script>
+				        	</c:if>
                             <li class="content-menuIcon"><i class="far fa-comment"></i></li>
                             <li class="content-menuIcon"><i class="far fa-paper-plane"></i></li>
                         </ul>
@@ -125,21 +136,47 @@
 
 </body>
 <script>
+
+var isClicked = false;
+
+function likeClick(postNo){
+	console.log(postNo);
+	
+	if(isClicked == false){
+		$("#postHeart"+postNo).css("color", "red");
+		isClicked = true;
+		console.log("#postHeart"+postNo)
+	} else{
+		$("#postHeart"+postNo).css("color", "black");
+		isClicked = false;
+		console.log("#postHeart"+postNo)
+	}
+	
+	$.ajax()
+	
+	
+}
+
 $(document).ready(function(){
 	
-	var isClicked = false;
+	for(var i = 0; i<likes.size(); i++){
+		console.log(likes);
+	}
 	
-	$("#postHeart").on("click", function(){
-		if(isClicked == false){
-			$(this).css("color", "red");
-			isClicked = true;
-			console.log(isClicked.toString());
-		} else {
-			$(this).css("color", "black");
-			isClicked = false;	
-		}
-	});
-	
+	/* $.ajax({
+		url:'/instagram/like',
+		type: 'POST',
+		
+		data: isClicked
+		
+	,
+	success : function(result){
+		console.log(isClicked);
+	},
+	error: function(request, status, error){
+		console.log(isClicked);
+	}
+	}); */
 	
 });	
 

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kojoo.service.MemberService;
 import com.kojoo.service.PostService;
+import com.kojoo.vo.LikeVO;
 import com.kojoo.vo.MemberVO;
 import com.kojoo.vo.PostVO;
 
@@ -52,7 +53,7 @@ public class MainController {
 	public String postLogin(MemberVO vo, HttpServletRequest req) throws Exception{
 		HttpSession session = req.getSession();
 		MemberVO login = memberService.login(vo);
-		
+		log.info(session.getAttribute("member"));
 		if(login == null) {
 			log.info("login Failed..........");
 			
@@ -70,16 +71,28 @@ public class MainController {
 	}
 	
 	@GetMapping("/main")
-	public String main(MemberVO memberVo, HttpServletRequest req, Model model) {
+	public String main(MemberVO memberVo, HttpServletRequest req, 
+			Model model, LikeVO likeVo) {
 		HttpSession session = req.getSession();
 		
 		memberVo = (MemberVO) session.getAttribute("member");
-		log.info(memberVo.getMemberNo());
-		log.info("main.................");
-		log.info(memberVo);
 		
 		List<PostVO> postList = postService.feedReading(memberVo);
+		List<LikeVO> likeList = postService.likeSelect(memberVo);
+		
+		for(LikeVO like : likeList) {
+			for(PostVO post : postList) {
+				if(like.getPostIndex() == post.getPostNo()) {
+					post.setLikeYn("y");
+				}
+			}
+		}
+		
+		
 		model.addAttribute("postList", postList);
+		
+		
+		
 //		List<LikeVO> likeList = postService.likeSelect(6);
 		
 		return "/instagram/main";
@@ -93,7 +106,7 @@ public class MainController {
 		return "redirect:/instagram/index";
 	}
 	
-	@GetMapping("/{member.userName}")
+	@GetMapping("/myProfile")
 	public String myProfile(MemberVO memberVo, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		log.info("getRequestURL : " + req.getRequestURL());
@@ -101,7 +114,7 @@ public class MainController {
 		memberVo = (MemberVO) session.getAttribute("member");
 		List<PostVO> list = postService.myPosting(memberVo);
 		req.setAttribute("lists", list);
-		
+				
 		log.info(memberVo.getMemberNo()+ "memberNo.............");
 		log.info("getURI" + req.getRequestURI());
 		

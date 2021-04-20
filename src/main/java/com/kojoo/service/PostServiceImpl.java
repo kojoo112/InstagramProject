@@ -33,8 +33,14 @@ public class PostServiceImpl implements PostService {
 	}
 	
 	@Override
-	public List<LikeVO> likeSelect(PostVO postVo){
-		return dao.likeSelect(postVo);
+	public List<LikeVO> likeSelect(MemberVO memberVo){
+		return dao.likeSelect(memberVo);
+	}
+
+	@Override
+	public void likeInsert(MemberVO memberVo) {
+		dao.likeInsert(memberVo);
+		
 	}
 
 }

@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class PostVO {
 	
-	private int index;
+	private int postNo;
 	private MultipartFile[] imageFile;
 	private String postImageName;
 	private String comment;
@@ -18,6 +18,7 @@ public class PostVO {
 	private String profileImageName;
 	private String userName;
 	private int likeCount;
+	private String likeYn;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date regDate;

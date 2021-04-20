@@ -40,12 +40,17 @@
 	
 	<select id="read" parameterType="com.kojoo.vo.MemberVO" resultType="com.kojoo.vo.MemberVO">
 		SELECT 
-		email, 
-		user_name AS userName, 
-		reg_date AS regDate, 
-		image_name AS imageName 
-		FROM members 
-		WHERE(email = #{email}, userName = #{userName})
+			email, 
+			user_name AS userName, 
+			reg_date AS regDate, 
+			image_name AS imageName 
+		FROM 
+			members 
+		WHERE
+		(
+			email = #{email}, 
+			userName = #{userName}
+		)
 	</select>
 	
 

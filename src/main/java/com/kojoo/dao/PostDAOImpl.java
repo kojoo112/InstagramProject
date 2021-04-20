@@ -38,9 +38,15 @@ public class PostDAOImpl implements PostDAO{
 	}
 
 	@Override
-	public List<LikeVO> likeSelect(PostVO postVo) {
+	public List<LikeVO> likeSelect(MemberVO memberVo) {
 		
-		return session.selectList(namespace + ".likeSelect", postVo);
+		return session.selectList(namespace + ".likeSelect", memberVo);
+	}
+
+	@Override
+	public void likeInsert(MemberVO memberVo) {
+		
+		session.insert(namespace + ".likeInsert", memberVo);
 	}
 
 }

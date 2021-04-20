@@ -14,5 +14,8 @@ public interface PostDAO {
 	
 	public List<PostVO> feedReading(MemberVO memberVo);
 	
-	public List<LikeVO> likeSelect(PostVO postVo);
+	public List<LikeVO> likeSelect(MemberVO memberVo);
+	
+	public void likeInsert(MemberVO memberVo);
+	
 }

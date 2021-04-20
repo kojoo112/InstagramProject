@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kojoo.service.PostService;
+import com.kojoo.vo.MemberVO;
 import com.kojoo.vo.PostVO;
 
 import lombok.extern.log4j.Log4j;
@@ -23,6 +24,11 @@ public class PostController {
 	
 	@Inject
 	PostService postService;
+	
+	@PostMapping("/like")
+	public void like(HttpServletRequest req, MemberVO memberVo) {
+	
+	}
 	
 	@PostMapping("/posting")
 	public String posting(HttpServletRequest req, PostVO postVo) {
