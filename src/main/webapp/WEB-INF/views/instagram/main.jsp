@@ -57,7 +57,7 @@
                             <li class="content-menuIcon"><i class="far fa-bookmark"></i></li>
                         </ul>
                     </div>
-                    <div class="views">좋아요 ${post.likeCount }개</div>
+                    <div class="views" id="likeCount${post.postNo}">좋아요 ${post.likeCount }개</div>
                     <div class="content-contents-contents">
                         <div class="contents-id">${post.userName }</div>
                         <div class="contents-contents">${post.comment}</div>
@@ -143,42 +143,48 @@ function likeClick(postNo){
 	console.log(postNo);
 	
 	if(isClicked == false){
-		$("#postHeart"+postNo).css("color", "red");
+		/* $("#postHeart"+postNo).css("color", "red"); */
 		isClicked = true;
 		console.log("#postHeart"+postNo)
-	} else{
-		$("#postHeart"+postNo).css("color", "black");
+	} else {
+		/* $("#postHeart"+postNo).css("color", "black"); */
 		isClicked = false;
 		console.log("#postHeart"+postNo)
 	}
 	
-	$.ajax()
+	var params = {
+			'memberIndex' : ${member.memberNo},
+			'postIndex' : postNo
+	}
+	
+	console.log(params);
+	
+	$.ajax({
+		url:'/instagram/like',
+		type: 'POST',
+		/* dataType: 'json', */
+		data: params,
+		success: function(data) {
+			
+			if(data.likeYn == "y"){
+				$("#postHeart"+postNo).css("color", "red");
+				$("#likeCount"+postNo).text("좋아요" + data.count + " 개");
+			} else {
+				$("#postHeart"+postNo).css("color", "black");
+				$("#likeCount"+postNo).text("좋아요" + data.count + " 개");
+			}
+			/* alert('전송성공'); */
+		},
+		error: function(params){
+			console.log(params);
+			/* alert('전송실패'); */
+		}
+		
+	});
 	
 	
 }
 
-$(document).ready(function(){
-	
-	for(var i = 0; i<likes.size(); i++){
-		console.log(likes);
-	}
-	
-	/* $.ajax({
-		url:'/instagram/like',
-		type: 'POST',
-		
-		data: isClicked
-		
-	,
-	success : function(result){
-		console.log(isClicked);
-	},
-	error: function(request, status, error){
-		console.log(isClicked);
-	}
-	}); */
-	
-});	
 
 </script>
 </html>

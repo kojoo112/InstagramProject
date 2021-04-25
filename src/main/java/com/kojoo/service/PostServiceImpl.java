@@ -38,9 +38,23 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public void likeInsert(MemberVO memberVo) {
-		dao.likeInsert(memberVo);
-		
+	public void likeInsert(LikeVO likeVo) {
+		dao.likeInsert(likeVo);
+	}
+
+	@Override
+	public int getLikeCount(LikeVO likeVo) {
+		return dao.getLikeCount(likeVo);
+	}
+
+	@Override
+	public void deleteLike(LikeVO likeVo) {
+		dao.deleteLike(likeVo);
+	}
+
+	@Override
+	public int postLikeCount(LikeVO likeVo) {
+		return dao.postLikeCount(likeVo);
 	}
 
 }

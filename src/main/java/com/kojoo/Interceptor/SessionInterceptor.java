@@ -20,7 +20,6 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
 		if(null == id) { 
 			System.out.println("Interceptor : Session Check Fail"); // main page 로 이동 
 			response.sendRedirect("/instagram/index");
-			System.out.println("asdfasdfasdfasdf.............." + id);
 			return false; 
 		} else { 
 			System.out.println("Interceptor : Session Check true"); 

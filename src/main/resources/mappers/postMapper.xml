@@ -25,7 +25,10 @@
 			image_name AS postImageName, 
 			comment, 
 			reg_date AS regDate 
-		FROM post WHERE member_id = #{memberNo}
+		FROM 
+			post 
+		WHERE 
+			member_id = #{memberNo}
 	</select>
 	
 	<select id="feedReading" parameterType="com.kojoo.vo.MemberVO" resultType="com.kojoo.vo.PostVO">
@@ -73,18 +76,46 @@
 			member_index = #{memberNo}
 	</select>
 		
-	<insert id="likeInsert" parameterType="com.kojoo.vo.MemberVO">
+	<insert id="likeInsert">
 		INSERT INTO 
-			heart 
+			`like` 
 		(
 			post_index, 
 			member_index
 		) 
 		VALUES 
 	 	(
-		    #{postNo},
-		    #{memberNo}
+		    #{postIndex},
+		    #{memberIndex}
 		)
 	</insert>
-		
+	
+	<select id="getLikeCount" parameterType="com.kojoo.vo.LikeVO" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			`like`
+		WHERE 
+			member_index = #{memberIndex}
+		AND
+			post_index = #{postIndex}
+	</select>
+	
+	<delete id="deleteLike" parameterType="com.kojoo.vo.LikeVO">
+		DELETE FROM 
+			`like` 
+		WHERE
+			member_index = #{memberIndex}
+		AND
+			post_index = #{postIndex} 
+	</delete>		
+	
+	<select id="postLikeCount" parameterType="com.kojoo.vo.LikeVO" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			`like`
+		WHERE
+			post_index = #{postIndex}
+	</select>
 </mapper>

@@ -16,5 +16,11 @@ public interface PostService {
 	
 	public List<LikeVO> likeSelect(MemberVO memberVo);
 	
-	public void likeInsert(MemberVO memberVo);
+	public void likeInsert(LikeVO likeVo);
+	
+	public int getLikeCount(LikeVO likeVo);
+	
+	public void deleteLike(LikeVO likeVo);
+	
+	public int postLikeCount(LikeVO likeVo);
 }

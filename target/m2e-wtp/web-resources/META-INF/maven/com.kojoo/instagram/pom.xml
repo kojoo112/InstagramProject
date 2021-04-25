@@ -15,6 +15,13 @@
 
 	</properties>
 	<dependencies>
+	<!-- stringify -->
+	<dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>2.9.5</version>
+    </dependency>
+	
 	<!-- 파일 업로드 처리 -->
 	<dependency>
 		<groupId>commons-fileupload</groupId>

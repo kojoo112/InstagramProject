@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+\<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  
 <header class="appBarw">
@@ -15,7 +15,7 @@
                     <li class="menuIcon"><i class="far fa-paper-plane"></i></li>
                     <li class="menuIcon"><i class="far fa-compass"></i></li>
                     <li class="menuIcon"><i class="far fa-heart"></i></li>
-                    <li class="menuIcon"><a href="/instagram/${member.userName }"><img src="${member.imageName }" alt="" class="appBarProfile"></a></li>
+                    <li class="menuIcon"><a href="/instagram/myProfile"><img src="${member.imageName }" alt="" class="appBarProfile"></a></li>
                 </ul>
             </div>
         </div>

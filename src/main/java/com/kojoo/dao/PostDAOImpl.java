@@ -22,31 +22,43 @@ public class PostDAOImpl implements PostDAO{
 	@Override
 	public void register(PostVO postVo) {
 		session.insert(namespace + ".register", postVo);
-		
 	}
 
 	@Override
 	public List<PostVO> myPosting(MemberVO memberVo) {
-		
 		return session.selectList(namespace + ".myPosting", memberVo);
 	}
 
 	@Override
 	public List<PostVO> feedReading(MemberVO memberVo) {
-		
 		return session.selectList(namespace + ".feedReading", memberVo);
 	}
 
 	@Override
 	public List<LikeVO> likeSelect(MemberVO memberVo) {
-		
 		return session.selectList(namespace + ".likeSelect", memberVo);
 	}
 
 	@Override
-	public void likeInsert(MemberVO memberVo) {
-		
-		session.insert(namespace + ".likeInsert", memberVo);
+	public void likeInsert(LikeVO likeVo) {
+		session.insert(namespace + ".likeInsert", likeVo);
 	}
+
+	@Override
+	public int getLikeCount(LikeVO likeVo) {
+		return session.selectOne(namespace +".getLikeCount", likeVo);
+	}
+
+	@Override
+	public void deleteLike(LikeVO likeVo) {
+		session.delete(namespace + ".deleteLike", likeVo);
+	}
+
+	@Override
+	public int postLikeCount(LikeVO likeVo) {
+		return session.selectOne(namespace + ".postLikeCount", likeVo);
+	}
+	
+	
 
 }
