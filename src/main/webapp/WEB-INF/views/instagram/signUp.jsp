@@ -21,6 +21,7 @@ body{
 	margin:auto;
 	left: 50%;
 	top: 50%;
+	padding: 50px;
 }
 .signUpForm{
 	width: 350px;
@@ -109,7 +110,7 @@ a {
 					<tr><td><input type="text" name="email" placeholder="이메일">
 					<tr><td><input type="text" name="userName" placeholder="사용자 이름">
 					<tr><td><input type="password" name="password" placeholder="비밀번호">
-					<tr><td><input type="submit" value="로그인">
+					<tr><td><input type="submit" value="회원가입">
 					<tr><td>
 						<div class="signUpRecommend">
 							계정이 있으신가요? <a href="/instagram/index">로그인</a>

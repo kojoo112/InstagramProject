@@ -33,7 +33,6 @@ public class PostController {
 			postService.likeInsert(likeVo);
 			int count = postService.postLikeCount(likeVo);
 			ApiResponseMessage like = new ApiResponseMessage("Success", "y", count, "", "");
-			
 			return new ResponseEntity<ApiResponseMessage>(like, HttpStatus.OK);
 		} else {
 			postService.deleteLike(likeVo);
@@ -46,31 +45,23 @@ public class PostController {
 	
 	@PostMapping("/posting")
 	public String posting(HttpServletRequest req, PostVO postVo) {
-		
 		HttpSession session = req.getSession();
 		log.info("session : " +  session);
-				
 		String uploadFolder = "/Users/kojoo112/eclipse-workspace/InstagramProject/src/main/webapp/resources/images/";
-		
 		log.info("posting................");
-		
 		   for(MultipartFile multipartFile : postVo.getImageFile()) {
 			   log.info("upload File Name: " + multipartFile.getOriginalFilename());
 			   log.info(multipartFile.getSize());
-			   
 			   File saveFile = new File(uploadFolder, multipartFile.getOriginalFilename());
-			  
 			   try {
 				   multipartFile.transferTo(saveFile);
 				   postVo.setPostImageName(saveFile.getName());
 				   postService.register(postVo);
-				   
 			   } catch(Exception e){
 				   log.error(e.getMessage());
 				   return "fail";
 			   }
 		   }
-		
 		return "redirect:/instagram/myProfile";
 	}
 

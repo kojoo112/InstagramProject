@@ -1,24 +1,21 @@
 package com.kojoo.controller;
 
-import java.util.List;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
+import com.kojoo.service.MemberService;
+import com.kojoo.service.PostService;
+import com.kojoo.vo.LikeVO;
+import com.kojoo.vo.MemberVO;
+import com.kojoo.vo.PostVO;
+import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.kojoo.service.MemberService;
-import com.kojoo.service.PostService;
-import com.kojoo.vo.LikeVO;
-import com.kojoo.vo.MemberVO;
-import com.kojoo.vo.PostVO;
-
-import lombok.extern.log4j.Log4j;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @Log4j
@@ -30,22 +27,18 @@ public class MainController {
 	
 	@Inject
 	private PostService postService;
-	
-	
-	
+
 	@GetMapping("/index")
 	public void index() {
 	}
 	
 	@GetMapping("/signUp")
-	public void getSignUp() {	
+	public void getSignUp() {
 	}
 	
 	@PostMapping("/signUp")
 	public String postSignUp(MemberVO memberVo) {
-		
 		memberService.register(memberVo);
-		
 		return "redirect:/instagram/index";
 	}
 	
@@ -56,17 +49,13 @@ public class MainController {
 		log.info(session.getAttribute("member"));
 		if(login == null) {
 			log.info("login Failed..........");
-			
 			return "/instagram/loginFailed";
-			
 		} else {
 			session.setAttribute("member", login);
 			String uploadPath = "/resources/img/";
 			login.setImageName(uploadPath + login.getImageName());
 		}
-		
 		log.info("login............" + login);
-		
 		return "redirect:/instagram/main";
 	}
 	
@@ -74,12 +63,9 @@ public class MainController {
 	public String main(MemberVO memberVo, HttpServletRequest req, 
 			Model model, LikeVO likeVo) {
 		HttpSession session = req.getSession();
-		
 		memberVo = (MemberVO) session.getAttribute("member");
-		
 		List<PostVO> postList = postService.feedReading(memberVo);
 		List<LikeVO> likeList = postService.likeSelect(memberVo);
-		
 		for(LikeVO like : likeList) {
 			for(PostVO post : postList) {
 				if(like.getPostIndex() == post.getPostNo()) {
@@ -87,14 +73,7 @@ public class MainController {
 				}
 			}
 		}
-		
-		
 		model.addAttribute("postList", postList);
-		
-		
-		
-//		List<LikeVO> likeList = postService.likeSelect(6);
-		
 		return "/instagram/main";
 	}
 	
@@ -102,7 +81,6 @@ public class MainController {
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		
 		return "redirect:/instagram/index";
 	}
 	
@@ -110,14 +88,11 @@ public class MainController {
 	public String myProfile(MemberVO memberVo, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		log.info("getRequestURL : " + req.getRequestURL());
-		
 		memberVo = (MemberVO) session.getAttribute("member");
 		List<PostVO> list = postService.myPosting(memberVo);
 		req.setAttribute("lists", list);
-				
 		log.info(memberVo.getMemberNo()+ "memberNo.............");
 		log.info("getURI" + req.getRequestURI());
-		
 		return "/instagram/myProfile";
 	}
 	

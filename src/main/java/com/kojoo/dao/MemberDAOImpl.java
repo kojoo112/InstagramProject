@@ -1,11 +1,10 @@
 package com.kojoo.dao;
 
-import javax.inject.Inject;
-
+import com.kojoo.vo.MemberVO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.kojoo.vo.MemberVO;
+import javax.inject.Inject;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO{
@@ -26,14 +25,11 @@ public class MemberDAOImpl implements MemberDAO{
 
 	@Override
 	public MemberVO login(MemberVO vo) {
-		
 		return session.selectOne(namespace + ".login", vo);
 	}
 
-
 	@Override
 	public MemberVO read(MemberVO vo) {
-		
 		return session.selectOne(namespace + ".read", vo);
 	}
 }

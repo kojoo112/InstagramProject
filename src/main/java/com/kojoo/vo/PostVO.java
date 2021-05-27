@@ -1,11 +1,10 @@
 package com.kojoo.vo;
 
-import java.util.Date;
-
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
-import lombok.Data;
+import java.util.Date;
 
 @Data
 public class PostVO {
@@ -22,5 +21,4 @@ public class PostVO {
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date regDate;
-	
 }

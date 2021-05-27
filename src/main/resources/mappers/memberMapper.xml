@@ -3,7 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kojoo.mapper.memberMapper">
-	
 	<select id="login" resultType="com.kojoo.vo.MemberVO">
 		SELECT 
 		  member_id AS memberNo, 
@@ -35,9 +34,7 @@
 			#{password}
 		)
 	</insert>
-	
-	
-	
+
 	<select id="read" parameterType="com.kojoo.vo.MemberVO" resultType="com.kojoo.vo.MemberVO">
 		SELECT 
 			email, 
@@ -52,9 +49,4 @@
 			userName = #{userName}
 		)
 	</select>
-	
-
-	
-
-
 </mapper>

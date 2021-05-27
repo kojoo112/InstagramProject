@@ -9,6 +9,4 @@ public interface MemberDAO {
 	public MemberVO login(MemberVO vo);
 	
 	public MemberVO read(MemberVO vo);
-	
-
 }

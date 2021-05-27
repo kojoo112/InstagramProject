@@ -11,10 +11,12 @@
 
 html, body{
 	height: 100%;
+	margin: 0;
 }
 .section{
 	display: flex;
 	margin: auto;
+	height: 100%;
 	background-color: #FAFAFA;
 }
 	
