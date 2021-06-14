@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kojoo.mapper.memberMapper">
+	
+	<select id="login" resultType="com.kojoo.vo.MemberVO">
+		SELECT 
+		  member_id AS memberNo, 
+		  email, 
+		  user_name AS userName, 
+		  password, 
+		  date_format(reg_date, '%Y-%m-%d %H:%m:%s') AS regDate, 
+		  image_name AS imageName 
+		FROM 
+		  members 
+		WHERE 
+		  (
+		    email = #{email} OR user_name = #{userName}
+		  ) AND password = #{password}
+
+	</select>
+	
+	<insert id="register">
+		INSERT INTO members
+		(
+			email, 
+			user_name, 
+			password
+		) 
+		VALUES 
+		( 
+			#{email}, 
+			#{userName}, 
+			#{password}
+		)
+	</insert>
+	
+	
+	
+	<select id="read" parameterType="com.kojoo.vo.MemberVO" resultType="com.kojoo.vo.MemberVO">
+		SELECT 
+			email, 
+			user_name AS userName, 
+			reg_date AS regDate, 
+			image_name AS imageName 
+		FROM 
+			members 
+		WHERE
+		(
+			email = #{email}, 
+			userName = #{userName}
+		)
+	</select>
+	
+
+	
+
+
+</mapper>

@@ -1,0 +1,14 @@
+@import "reset.css";
+@import "topNav.css";
+@import "content.css";
+@import "aside.css";
+@import "profile.css";
+@import "main-radio.css";
+
+html {
+  min-width: 390px;
+}
+html, body {
+min-height: 100% ;
+    height: 100%;
+}

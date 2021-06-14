@@ -1,0 +1,58 @@
+.wrapper {
+  width: 90%;
+  margin: auto;
+  padding: 30px 15px;
+}
+
+#profilePhoto {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.profileWrapper {
+  display: flex;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 40px;
+}
+
+.profileWrapper-profileImage {
+  width: 290px;
+}
+
+.profileWrapper-profileImage {
+  text-align: center;
+}
+
+.profileWrapper-info-myInfo {
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.profileWrapper-info-myInfo-username,
+.profileWrapper-info-myInfo-profileEdit {
+  margin-right: 15px;
+}
+
+.profileWrapper-info-myInfo-username {
+  font-size: 32px;
+}
+
+.profileEditBtn {
+  font-size: 14px;
+}
+
+.postsCount,
+.followerCount,
+.followCount {
+  margin: 0 10px;
+}
+
+.info-tab {
+  border-top: 1px solid #ebebeb;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-around;
+}
